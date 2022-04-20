@@ -15,7 +15,11 @@ export class TaskService {
   ) { }
 
   getTasks(): Observable<Task[]>{
-
     return this.http.get<Task[]>(this.apiUrl)  // el get nos devuelve la lista de tareas, a travez de apiUrl.
+  }
+  deleteTask(task:Task): Observable<Task>{
+    const url= `${this.apiUrl}/${task.id}`
+    return this.http.delete<Task>(url)
+
   }
 }
