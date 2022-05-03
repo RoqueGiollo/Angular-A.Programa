@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHandler} from '@angular/common/http'; //nos permite hacer llamadas get-post 
+import {HttpClient, HttpHeaders} from '@angular/common/http'; //nos permite hacer llamadas get-post 
 import {Observable, observable, of} from 'rxjs';
 import {TASKS} from '../mock-tasks';
 import { Task } from 'src/app/Task';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'content-Type':'application/json'
+  })
+}
 
 @Injectable({
   providedIn: 'root'
@@ -22,4 +28,15 @@ export class TaskService {
     return this.http.delete<Task>(url)
 
   }
+
+  updateTaskReminder(task: Task): Observable<Task>{ //obeserbale que devuelve una task
+    const url = this.apiUrl + task.id;
+    return this.http.put<Task>(url, task, httpOptions)
+  }
+
+  addTask(task: Task): Observable<Task>{
+    const url = this.apiUrl + task.id;
+    return this.http.post<Task>(this.apiUrl, task, httpOptions)
+  }
+
 }
