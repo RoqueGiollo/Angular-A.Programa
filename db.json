@@ -26,7 +26,7 @@
     },
     {
       "text": "Nueva Tarea",
-      "day": "manana",
+      "day": "Hoy",
       "reminder": true,
       "id": 6
     }
